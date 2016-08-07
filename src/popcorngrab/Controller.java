@@ -133,8 +133,6 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        labelStatus.setText(":D");
-
         // Images
         Image imgMovie = new Image(this.getClass().getResourceAsStream("res/Movie-24.png"));
         Image imgFolder = new Image(this.getClass().getResourceAsStream("res/Folder-24.png"));
@@ -163,5 +161,8 @@ public class Controller implements Initializable {
                 }
             }
         }
+
+        // Show we user we are not tourists
+        labelStatus.setText(popFiles.size() > 0 ? "Found " + popFiles.size() + " movie" + (popFiles.size() > 1 ? "s" : "") + " ! :D" : "No recently watched movies :(");
     }
 }
