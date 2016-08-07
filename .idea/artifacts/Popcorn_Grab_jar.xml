@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Popcorn-Grab:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Popcorn_Grab_jar</output-path>
+    <root id="archive" name="Popcorn-Grab.jar">
+      <element id="module-output" name="Popcorn-Grab" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/jfoenix.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/commons-io-2.5/commons-io-2.5.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

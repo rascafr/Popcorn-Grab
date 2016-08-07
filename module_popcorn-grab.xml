@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_popcorn-grab" default="compile.module.popcorn-grab">
+  <dirname property="module.popcorn-grab.basedir" file="${ant.file.module_popcorn-grab}"/>
+  
+  <property name="module.jdk.home.popcorn-grab" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.popcorn-grab" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.popcorn-grab" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.popcorn-grab" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="popcorn-grab.output.dir" value="${module.popcorn-grab.basedir}/out/production/Popcorn-Grab"/>
+  <property name="popcorn-grab.testoutput.dir" value="${module.popcorn-grab.basedir}/out/test/Popcorn-Grab"/>
+  
+  <path id="popcorn-grab.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="popcorn-grab.module.production.classpath">
+    <path refid="${module.jdk.classpath.popcorn-grab}"/>
+    <path refid="library.jfoenix.classpath"/>
+    <path refid="library.commons-io-2.5-javadoc.classpath"/>
+  </path>
+  
+  <path id="popcorn-grab.runtime.production.module.classpath">
+    <pathelement location="${popcorn-grab.output.dir}"/>
+    <path refid="library.jfoenix.classpath"/>
+    <path refid="library.commons-io-2.5-javadoc.classpath"/>
+  </path>
+  
+  <path id="popcorn-grab.module.classpath">
+    <path refid="${module.jdk.classpath.popcorn-grab}"/>
+    <pathelement location="${popcorn-grab.output.dir}"/>
+    <path refid="library.jfoenix.classpath"/>
+    <path refid="library.commons-io-2.5-javadoc.classpath"/>
+  </path>
+  
+  <path id="popcorn-grab.runtime.module.classpath">
+    <pathelement location="${popcorn-grab.testoutput.dir}"/>
+    <pathelement location="${popcorn-grab.output.dir}"/>
+    <path refid="library.jfoenix.classpath"/>
+    <path refid="library.commons-io-2.5-javadoc.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.popcorn-grab">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.popcorn-grab">
+    <patternset refid="excluded.from.module.popcorn-grab"/>
+  </patternset>
+  
+  <path id="popcorn-grab.module.sourcepath">
+    <dirset dir="${module.popcorn-grab.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.popcorn-grab" depends="compile.module.popcorn-grab.production,compile.module.popcorn-grab.tests" description="Compile module Popcorn-Grab"/>
+  
+  <target name="compile.module.popcorn-grab.production" depends="register.custom.compilers" description="Compile module Popcorn-Grab; production classes">
+    <mkdir dir="${popcorn-grab.output.dir}"/>
+    <javac2 destdir="${popcorn-grab.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.popcorn-grab}/javac">
+      <compilerarg line="${compiler.args.popcorn-grab}"/>
+      <bootclasspath refid="popcorn-grab.module.bootclasspath"/>
+      <classpath refid="popcorn-grab.module.production.classpath"/>
+      <src refid="popcorn-grab.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.popcorn-grab"/>
+    </javac2>
+    
+    <copy todir="${popcorn-grab.output.dir}">
+      <fileset dir="${module.popcorn-grab.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.popcorn-grab.tests" depends="register.custom.compilers,compile.module.popcorn-grab.production" description="compile module Popcorn-Grab; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.popcorn-grab" description="cleanup module">
+    <delete dir="${popcorn-grab.output.dir}"/>
+    <delete dir="${popcorn-grab.testoutput.dir}"/>
+  </target>
+</project>

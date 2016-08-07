@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="323.0" prefWidth="569.0" xmlns="http://javafx.com/javafx/8.0.91"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="popcorngrab.Controller">
+    <Label fx:id="labelStatus" accessibleRole="TEXT_AREA" layoutX="19.0" layoutY="290.0" prefHeight="27.0"
+           prefWidth="533.0" text="Grab ?" textOverrun="CLIP"/>
+    <JFXListView fx:id="listPop" layoutX="19.0" layoutY="14.0" onMouseClicked="#locateFile" prefHeight="269.0"
+                 prefWidth="533.0"/>
+</AnchorPane>
